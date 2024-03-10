@@ -1,0 +1,264 @@
+{
+    "external_resource_type": "TICKET",
+    "task_id": 5334203676229632,
+    "task_external_id": "2444384128_ticket",
+    "task_external_type": "HUBSPOT",
+    "external_integration": {
+      "id": 5167199140970496,
+      "url_safe_id": "ahBzfmFycml2eS1zYW5kYm94cjgLEgtVc2VyU2hhZG93MxiAgKDQ9Y_hCwwLEhNFeHRlcm5hbEludGVncmF0aW9uGICAoOqk8ZYJDA",
+      "created": "2024-03-05T07:05:32.488318",
+      "updated": "2024-03-05T07:30:45.184954",
+      "owner": 6619606970531840,
+      "created_by": 6619606970531840,
+      "integration_type": "HUBSPOT",
+      "resource_type": "TASK",
+      "authentication_mechanism": "OAUTH",
+      "authentication_keys": null,
+      "async_data_fetch_settings": [
+        {
+          "resource_type": "ITEM",
+          "data_fetch_range": 24,
+          "data_fetch_trigger_time": "00:00:00",
+          "data_fetch_trigger_time_zone": "Asia/Karachi",
+          "data_fetch_trigger_interval": "NEVER",
+          "previous_auto_data_fetch_datetime": null,
+          "previous_auto_data_fetch_datetime_original_iso_str": null,
+          "next_auto_data_fetch_datetime": null,
+          "items_fields_mapping_info": null,
+          "external_resource_type": "PRODUCT",
+          "data_fetch_additional_settings": null
+        }
+      ],
+      "data_fetch_trigger_time": "00:00:00",
+      "data_fetch_trigger_time_zone": "Asia/Karachi",
+      "data_fetch_trigger_interval": "NEVER",
+      "data_fetch_additional_settings": {
+        "fetch_tasks_as": "UNSCHEDULED",
+        "selected_button_type_deal": [
+          "TASK",
+          "BOOKING"
+        ],
+        "selected_button_type_ticket": [
+          "TASK",
+          "BOOKING"
+        ],
+        "selected_fetch_type": [
+          "DEAL",
+          "TICKET"
+        ],
+        "showTaskButtonsInAppPanel": true,
+        "orphan_tasks_operations": {
+          "deleted": "nothing"
+        },
+        "orphan_task_items_operations": {
+          "action": "nothing"
+        },
+        "items_fields_mapping": [
+          
+        ],
+        "dealStages": "appointmentscheduled,presentationscheduled,6794515,6794540,6794817,3146670,3146671,3331630,6794818,contractsent,closedwon,closedlost,8472644,5075423,5075424,5075425,5075426,5075427,5075428,5075429,lead,subscriber\n",
+        "ticketStatuses": "1,2,3,4,5,6,7,8,9,62496273,9418778,9418779,9418780,62426149,9418781"
+      },
+      "previous_auto_data_fetch_datetime": "2024-03-05T07:30:45.091445",
+      "previous_auto_data_fetch_datetime_original_iso_str": "2024-03-05T07:30:45.091445",
+      "next_auto_data_fetch_datetime": null,
+      "data_fetch_range": 24,
+      "extra_fields": null,
+      "is_group_based": false,
+      "json_mapping": null,
+      "reverse_data_sync_settings": [
+        {
+          "reverse_data_sync_resource_type": "TASK",
+          "reverse_data_sync_trigger_type": "TASK",
+          "reverse_data_sync_trigger_sub_type": "TASK_DELETE",
+          "reverse_data_sync_external_resource_type": "DEAL",
+          "reverse_data_sync_group_id": null,
+          "reverse_data_sync_template_id": null,
+          "reverse_data_sync_is_primary_group": false,
+          "json_mapping": {
+            "integration_version": "1.0",
+            "integration_name": "hubspot",
+            "actions_to_perform": [
+              {
+                "action_to_perform": "update",
+                "arrivy_key_source": "TASK",
+                "external_key_source": "DEAL",
+                "action_meta": {
+                  "keys_to_update": [
+                    {
+                      "external_key_name": "dealstage",
+                      "value": "closedwon"
+                    },
+                    {
+                      "external_key_name": "dealname",
+                      "arrivy_key_name": "title"
+                    },
+                    {
+                      "external_key_name": "status",
+                      "arrivy_key_name": "status"
+                    },
+                    {
+                      "external_key_name": "description",
+                      "arrivy_key_name": "details"
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "reverse_data_sync_action_source": [
+            "ANY"
+          ],
+          "attachment_types_to_include": "",
+          "reverse_data_sync_task_source": [
+            "ANY"
+          ],
+          "serialized_matched_external_integration_info": null
+        },
+        {
+          "reverse_data_sync_resource_type": "TASK",
+          "reverse_data_sync_trigger_type": "TASK",
+          "reverse_data_sync_trigger_sub_type": "TASK_DELETE",
+          "reverse_data_sync_external_resource_type": "TICKET",
+          "reverse_data_sync_group_id": null,
+          "reverse_data_sync_template_id": null,
+          "reverse_data_sync_is_primary_group": false,
+          "json_mapping": {
+            "integration_version": "1.0",
+            "integration_name": "hubspot",
+            "actions_to_perform": [
+              {
+                "action_to_perform": "update",
+                "arrivy_key_source": "TASK",
+                "external_key_source": "TICKET",
+                "action_meta": {
+                  "keys_to_update": [
+                    {
+                      "external_key_name": "hs_pipeline_stage",
+                      "value": "2"
+                    },
+                    {
+                      "external_key_name": "subject",
+                      "arrivy_key_name": "title"
+                    },
+                    {
+                      "external_key_name": "install_date",
+                      "arrivy_key_name": "start_datetime",
+                      "conversion": {
+                        "additional_info": {
+                          "default": "US/Chicago",
+                          "source": "TASK",
+                          "arrivy_key_name": "start_datetime_timezone"
+                        },
+                        "key": "utc_to_unixtimestamp"
+                      }
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "reverse_data_sync_action_source": [
+            "ANY"
+          ],
+          "attachment_types_to_include": "",
+          "reverse_data_sync_task_source": [
+            "ANY"
+          ],
+          "serialized_matched_external_integration_info": null
+        }
+      ],
+      "reverse_json_mapping": null,
+      "external_integration_company_id": "23871951",
+      "oauth_credentials": {
+        "token_type": "bearer",
+        "refresh_token": "da0a2269-b67b-4b80-b31b-46a7a9fba951",
+        "access_token": "CICE--zgMRIOAAUDQAAA4yAAAAA4AgEYz4OxCyCK3rYMKNSLDTIUgCj3H2t7fZIHbu9HRPmP6-UMSzY6QQAABEEAAAAAwP8DAAAAAAAAgAAAAAAABAAMAOAADgAwAOARAAAAAABA_AcGABCwAwAAAAAAAAAAAAAAAAAAAAwEQhQak6sRK7KzGdYQuDg-GoStru07wEoDbmExUgBaAA",
+        "expires_in": 1800
+      },
+      "auth_keys": null
+    },
+    "status_update_info": {
+      "company_id": 6619606970531840,
+      "integration_id": 5167199140970496,
+      "project_id": "arrivy-sandbox",
+      "status_update_url": "https://sandbox.arrivy.com/api/external_integrations/reverse_integration/history/update_status",
+      "integration_type": "HUBSPOT",
+      "history_id": 4846252743720960
+    },
+    "reverse_data_sync_resource_type": "TASK",
+    "reverse_data_sync_trigger_type": "TASK",
+    "reverse_data_sync_trigger_sub_type": "TASK_DELETE",
+    "reverse_data_sync_external_resource_type": "TICKET",
+    "reverse_data_sync_group_id": null,
+    "reverse_data_sync_template_id": null,
+    "task_attachments": [
+      
+    ],
+    "journal_attachments": [
+      
+    ],
+    "uploaded_files": [
+      
+    ],
+    "journal_notes": [
+      
+    ],
+    "json_mapping": {
+      "integration_version": "1.0",
+      "integration_name": "hubspot",
+      "actions_to_perform": [
+        {
+          "action_to_perform": "update",
+          "arrivy_key_source": "TASK",
+          "external_key_source": "DEAL",
+          "action_meta": {
+            "keys_to_update": [
+              {
+                "external_key_name": "dealstage",
+                "value": "closedwon"
+              },
+              {
+                "external_key_name": "dealname",
+                "arrivy_key_name": "title"
+              },
+              {
+                "external_key_name": "status",
+                "arrivy_key_name": "status"
+              },
+              {
+                "external_key_name": "description",
+                "arrivy_key_name": "details"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    "groups": [
+      {
+        "id": 5187481398411264,
+        "name": "Primary Group",
+        "complete_address": null,
+        "is_implicit": true,
+        "timezone": null
+      },
+      {
+        "id": 6526601198567424,
+        "name": "calendly_testing_group",
+        "complete_address": "",
+        "is_implicit": false,
+        "timezone": "US/Hawaii"
+      }
+    ],
+    "items_to_upload": [
+      
+    ],
+    "sync_type": "REVERSE",
+    "auth_keys": {
+      "token_type": "bearer",
+      "refresh_token": "da0a2269-b67b-4b80-b31b-46a7a9fba951",
+      "access_token": "CICE--zgMRIOAAUDQAAA4yAAAAA4AgEYz4OxCyCK3rYMKNSLDTIUgCj3H2t7fZIHbu9HRPmP6-UMSzY6QQAABEEAAAAAwP8DAAAAAAAAgAAAAAAABAAMAOAADgAwAOARAAAAAABA_AcGABCwAwAAAAAAAAAAAAAAAAAAAAwEQhQak6sRK7KzGdYQuDg-GoStru07wEoDbmExUgBaAA",
+      "expires_in": 1800
+    }
+  }

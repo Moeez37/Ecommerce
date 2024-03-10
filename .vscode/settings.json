@@ -1,0 +1,42 @@
+{
+    "workbench.colorTheme": "Default Dark Modern",
+    "workbench.iconTheme": "material-icon-theme",
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "yaml.schemas": {
+        "file:///home/moeez/.vscode-server/extensions/atlassian.atlascode-3.0.10/resources/schemas/pipelines-schema.json": "bitbucket-pipelines.yml"
+    },
+    "redhat.telemetry.enabled": true,
+    "editor.formatOnSave": true,
+    "tailwindCSS.includeLanguages": {
+        "plaintext": "html",
+        "javascript": "javascript",
+        "typescript": "javascript",
+        "javascriptreact": "javascript",
+        "typescriptreact": "javascript",
+        "markdown": "html"
+    },
+    "tailwindCSS.experimental.classRegex": [
+        
+    ],
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": true
+    },
+    "files.associations": {
+        "*.css": "tailwindcss"
+      }
+      ,"editor.quickSuggestions": {
+        "strings": "on"
+      }
+   , "editor.quickSuggestionsDelay": 10,
+    "editor.parameterHints.enabled": true
+}
