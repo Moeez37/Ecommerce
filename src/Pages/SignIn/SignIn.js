@@ -1,14 +1,20 @@
 import React from "react";
 import Input from "../../Custom/customComponents/input.js";
 import useInput from "../../Custom/customHook/use-input.js";
-
+import { useSelector,useDispatch } from "react-redux";
 const SignIn = () => {
-
+    const state = useSelector(state => state);
+    const dispatch = useDispatch(); 
     const email=useInput();
     const password = useInput();
     const onSubmitHandler = (event)=>{
           event.preventDefault();
           console.log(email,password);
+          if(email.input === state.user.email && password.input === state.user.password){
+            dispatch({type:"login"});
+          }
+          email.setInput("");
+          password.setInput(""); 
     } 
    
 
