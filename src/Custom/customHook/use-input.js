@@ -1,15 +1,15 @@
 import { useState } from "react";
- const useInput = ()=>
-{   const [input,setInput] = useState("");
-    let timeoutId=null;
-    const onChangeHandler = (event)=>{
+const useInput = () => {
+    const [input, setInput] = useState("");
+    let timeoutId = null;
+    const onChangeHandler = (event) => {
         clearTimeout(timeoutId);
-        setTimeout(()=>{setInput(event.target.value)},500);
+        setTimeout(() => { setInput(event.target.value) }, 500);
     }
-    return{
+    return {
         input,
         setInput,
-        onChange:onChangeHandler
+        onChange: onChangeHandler
     };
 }
 export default useInput

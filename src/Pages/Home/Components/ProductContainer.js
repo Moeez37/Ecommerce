@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import ProductCard from "../../../Custom/customComponents/ProductCard";
 
-function ProductContainer() {
+function ProductContainer({ catagory }) {
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('https://fakestoreapi.com/products')
+        fetch(catagory ? `https://fakestoreapi.com/products/category/${catagory}` : 'https://fakestoreapi.com/products')
             .then(res => res.json())
             .then(json => {
                 console.log(json);

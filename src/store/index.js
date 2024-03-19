@@ -1,16 +1,25 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
-const initialState = { user: {} };
-const reduxSlice = createSlice({
-    name: "userInfo",
+import { userSettings } from "./userSpecSettings";
+
+const initialState = { user: {}, islogin: false };
+const userAuth = createSlice({
+    name: "userAuth",
     initialState,
     reducers: {
-        userInfo(state, action) {
+        loginUser(state, action) {
             state.user = action.payload;
+            state.islogin = true;
+        },
+        logOutUser(state) {
+            state.islogin = false;
         }
+
     }
 })
 
 const store = configureStore({
-    reducer: { userInfo: reduxSlice.reducer }
+    reducer: { Auth: userAuth.reducer, userSettings: userSettings.reducer }
 })
+export default store;
+export const userAuthInfo = userAuth.actions;

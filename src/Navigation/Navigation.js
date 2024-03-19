@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 import Input from "../Custom/customComponents/input";
 import useInput from "../Custom/customHook/use-input";
-import { Person, Person2 } from "@mui/icons-material"
+import { Person, Person2, ShoppingCart } from "@mui/icons-material"
 const Navigation = () => {
+    const isAuthenticated = useSelector(state => state.Auth.islogin)
     const searchInput = useInput();
     const onSubmitHandler = (event) => {
         event.preventDefault();
@@ -19,10 +21,12 @@ const Navigation = () => {
             </form>
 
             <div className="flex basis-3/12 items-center">
-                <div className="mr-4"><Link to="/signin" >SignIn</Link></div>
-                <div className="mr-4"><Link to="/person"><Person /></Link></div>
-                <div><Link to={"/signup"}><Person2 /></Link></div>
+                {!isAuthenticated && <div className="mr-4"><Link to="/signin">SignIn</Link></div>}
+                {isAuthenticated && <div className="mr-4"><Link to="#"><ShoppingCart /></Link></div>}
+                {isAuthenticated && <div className="mr-4"><Link to="/person"><Person /></Link></div>}
+                {!isAuthenticated && <div className="mr-4"><Link to="/signup"><Person2 /></Link></div>}
             </div>
+
         </div>
     );
 }
