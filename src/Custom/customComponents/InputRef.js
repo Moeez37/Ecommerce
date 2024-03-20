@@ -5,9 +5,13 @@ const Input = React.forwardRef((props, ref) => {
     const getValue = () => {
         return Inputref.current.value;
     }
+    const Focus = () => {
+        Inputref.current.focus();
+    }
     useImperativeHandle(ref, () => {
         return {
-            getValue
+            getValue,
+            Focus
         }
     })
 

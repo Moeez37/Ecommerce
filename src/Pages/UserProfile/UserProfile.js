@@ -1,9 +1,11 @@
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import PropTypes from 'prop-types'
 
 import Input from '../../Custom/customComponents/InputRef';
+import { ValidateUserInfoField } from "../../util/utils"
 
 function UserProfile(props) {
+    const [UserInfo, setUserInfo] = useState({});
     const [editing, setEditing] = useState(false);
     const [disableInputFields, setDisableInputFields] = useState(true)
     const fullname = useRef();
@@ -18,12 +20,47 @@ function UserProfile(props) {
     const logitude = useRef();
     const phoneNo = useRef();
 
+    useEffect(() => {
+        try {
+            const res = fetch("https://fakestoreapi.com/users", {
+                method: "post",
+                body: UserInfo
+            }).then((res) => {
+                return res.json()
 
-    function handleSaveClick() {
-        setEditing(false);
-        setDisableInputFields(true)
+            }).then(data => {
+                console.log(data)
+            })
+        }
+        catch (error) {
+            console.error(error);
+        }
+    }, [UserInfo])
 
-        console.log(fullname.current.getValue())
+
+    function handleSaveClick(event) {
+        event.preventDefault();
+        const UserObject = {
+            fullname: fullname,
+            email: email,
+            firstName: firstName,
+            lastName: lastName,
+            streetAdd: streetAdd,
+            city: city,
+            state: state,
+            zipCode: zipCode,
+            latitude: latitude,
+            phone: phoneNo,
+        }
+        const res = ValidateUserInfoField(UserObject);
+        if (res.isValid) {
+            setEditing(false);
+            setDisableInputFields(true)
+            setUserInfo(prevState => { return { ...prevState, ...res.userData } })
+        }
+        else {
+            console.log("no updated !")
+        }
     }
     function handleEditClick() {
         setEditing(true);

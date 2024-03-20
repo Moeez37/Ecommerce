@@ -2,8 +2,8 @@ function ProductCard({ item }) {
     const { id, title, price, description, image } = item;
 
     return (
-        <div className="max-w-xs w-full rounded overflow-hidden shadow-lg">
-            <img className="w-full" src={image} alt={title} />
+        <div className="flex flex-col content-center justify-center size-60 rounded overflow-hidden shadow-lg">
+            <img className="content-center justify-center size-28" src={image} alt={title} />
             <div className="px-6 py-4">
                 <div className="font-bold text-xl mb-2 truncate">{title}</div>
                 <p className="text-gray-700 text-base truncate">
