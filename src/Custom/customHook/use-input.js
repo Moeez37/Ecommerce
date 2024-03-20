@@ -4,10 +4,11 @@ const useInput = () => {
     let timeoutId = null;
     const onChangeHandler = (event) => {
         clearTimeout(timeoutId);
-        setTimeout(() => { setInput(event.target.value) }, 500);
+        setInput(event.target.value)
+        timeoutId = setTimeout(() => { setInput(event.target.value) }, 100);
     }
     return {
-        input,
+        value: input,
         setInput,
         onChange: onChangeHandler
     };

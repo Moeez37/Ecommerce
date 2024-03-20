@@ -1,8 +1,6 @@
 
 
-const Input = ({ type, id, onChange, className, placeholder }) => {
-
-
+const Input = ({ type, id, onChange, className, placeholder, value }) => {
     return (
         <div>
             <input
@@ -11,6 +9,7 @@ const Input = ({ type, id, onChange, className, placeholder }) => {
                 onChange={event => { onChange(event) }}
                 className={className}
                 placeholder={placeholder}
+                value={value}
             />
 
         </div>

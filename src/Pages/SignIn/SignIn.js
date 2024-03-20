@@ -18,11 +18,11 @@ const SignIn = () => {
     const user = await response.json();
 
     console.log("userData:", user);
-    console.log("email.input:", email.input);
-    console.log("password.input:", password.input);
+    console.log("email.input:", email.value);
+    console.log("password.input:", password.value);
 
 
-    if (email.input === user.email && password.input === user.password) {
+    if (email.value === user.email && password.value === user.password) {
       dispatch(userAuthInfo.loginUser(user));
       email.setInput("");
       password.setInput("");
