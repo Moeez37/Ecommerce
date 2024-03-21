@@ -1,16 +1,18 @@
 import { useState } from "react";
-import ProductModal from "../Modal/ProductModals";
+import ProductModalsJsx from "../Modal/ProductModals";
+import { createPortal } from "react-dom"
 
 function ProductCard({ item }) {
     const { id, title, price, description, image } = item;
     const [showModal, setShowModal] = useState(false)
+    console.log(showModal)
     function onShowModalClickHandler() {
         console.log("yes im")
         setShowModal(true)
     }
     return (<>
-        {showModal ? createPortal(<ProductModal item={item} setShowModal={setShowModal} />, document.getElementById("Modal")) : ""}
-        <div class="relative m-10 flex w-full max-w-xs flex-col overflow-hidden rounded-lg border border-gray-100 bg-white shadow-md">
+        {showModal ? createPortal(<ProductModalsJsx item={item} setShowModal={setShowModal} />, document.getElementById("Modal")) : ""}
+        <div class={`relative m-10 flex w-full max-w-xs flex-col ${showModal ? '' : 'overflow-hidden'} rounded-lg border border-gray-100 bg-white shadow-md`}>
             <a onClick={() => { onShowModalClickHandler() }} class="relative mx-3 mt-3 flex h-60 overflow-hidden rounded-xl" href="#">
                 <img class="object-cover" src={image} alt="product image" />
                 <span class="absolute top-0 left-0 m-2 rounded-full bg-black px-2 text-center text-sm font-medium text-white">{(price % 75).toFixed(0)}% OFF</span>
