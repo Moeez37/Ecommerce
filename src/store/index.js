@@ -1,6 +1,7 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 import { userSettings } from "./userSpecSettings";
+import Products from "./Product";
 
 const initialState = { user: {}, islogin: false };
 const userAuth = createSlice({
@@ -19,7 +20,7 @@ const userAuth = createSlice({
 })
 
 const store = configureStore({
-    reducer: { Auth: userAuth.reducer, userSettings: userSettings.reducer }
+    reducer: { Auth: userAuth.reducer, userSettings: userSettings.reducer, products: Products.reducer }
 })
 export default store;
 export const userAuthInfo = userAuth.actions;

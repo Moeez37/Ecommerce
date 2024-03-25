@@ -2,7 +2,8 @@ import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Input from "../Custom/customComponents/input";
 import useInput from "../Custom/customHook/use-input";
-import { Person, Person2, ShoppingCart } from "@mui/icons-material"
+import { PeopleAltRounded, Person, Person2, ShoppingCart } from "@mui/icons-material"
+import { MenuItem } from "@mui/material";
 const Navigation = () => {
     const isAuthenticated = useSelector(state => state.Auth.islogin)
     const searchInput = useInput();
@@ -21,10 +22,11 @@ const Navigation = () => {
             </form>
 
             <div className="flex basis-3/12 items-center">
-                {!isAuthenticated && <div className="mr-4"><Link to="/signin">SignIn</Link></div>}
-                {isAuthenticated && <div className="mr-4"><Link to="#"><ShoppingCart /></Link></div>}
-                {isAuthenticated && <div className="mr-4"><Link to="/person"><Person /></Link></div>}
-                {!isAuthenticated && <div className="mr-4"><Link to="/signup"><Person2 /></Link></div>}
+                {!isAuthenticated && <div className="mr-4"><Link to="signin">SignIn</Link></div>}
+                {isAuthenticated && <div className="mr-4"><Link to="cart"><ShoppingCart /></Link></div>}
+                {isAuthenticated && <div className="mr-4"><Link to="person"><Person /></Link></div>}
+                {!isAuthenticated && <div className="mr-4"><Link to="signup"><Person2 /></Link></div>}
+                {<div className="mr-4"><Link to="product"><PeopleAltRounded /></Link></div>}
             </div>
 
         </div>
