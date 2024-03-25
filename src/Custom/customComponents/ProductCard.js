@@ -1,8 +1,11 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
 import ProductModalsJsx from "../Modal/ProductModals";
+import { cartActions } from "../../store/Cart";
 import { createPortal } from "react-dom"
 
 function ProductCard({ item }) {
+    const dispatch = useDispatch();
     const { id, title, price, description, image } = item;
     const [showModal, setShowModal] = useState(false)
     const [scrollPosition, setScrollPosition] = useState(0);
@@ -13,6 +16,7 @@ function ProductCard({ item }) {
         document.body.style.overflow = 'hidden';
         setShowModal(true)
     }
+
     return (<>
         {showModal ? createPortal(<ProductModalsJsx item={item} setShowModal={setShowModal} setScrollPosition={setScrollPosition} scrollPosition={scrollPosition} />, document.getElementById("Modal")) : ""}
         <div class={`relative m-10 flex w-full max-w-xs flex-col rounded-lg border border-gray-100 bg-white shadow-md`}>
@@ -48,7 +52,9 @@ function ProductCard({ item }) {
                         <span class="mr-2 ml-3 rounded bg-yellow-200 px-2.5 py-0.5 text-xs font-semibold">{id % 5}</span>
                     </div>
                 </div>
-                <a href="#" onClick={() => { }} class="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300" >
+                <a href="#" onClick={() => {
+                    dispatch(cartActions.addItemToCart({ id, price, quantity: 1 }))
+                }} class="flex items-center justify-center rounded-md bg-slate-900 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-blue-300" >
                     <svg xmlns="http://www.w3.org/2000/svg" class="mr-2 h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>

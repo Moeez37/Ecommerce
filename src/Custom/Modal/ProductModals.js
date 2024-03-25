@@ -1,11 +1,21 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { cartActions } from '../../store/Cart';
 
 const ProductModalsJsx = ({ item, setShowModal, setScrollPosition, scrollPosition }) => {
     const { name, price, description, image, id } = item;
     console.log(id, "Moeez")
+    const dispatch = useDispatch();
     function onCloseHandler() {
 
+        window.scrollTo(0, scrollPosition)
+        document.body.style.overflow = "unset";
+
+        setShowModal(false)
+    }
+    function handleAddToCart() {
+        dispatch(cartActions.addItemToCart({ id, price, quantity: 1 }))
         window.scrollTo(0, scrollPosition)
         document.body.style.overflow = "unset";
 
@@ -29,7 +39,7 @@ const ProductModalsJsx = ({ item, setShowModal, setScrollPosition, scrollPositio
                     <div className="flex justify-start p-4">
                         <Link to={`${id}`} relative='path' preventScrollReset={true}><button className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-3">View</button></Link>
                     </div><div className="flex justify-end p-4">
-                        <button className="text-gray-900 bg-white hover:bg-gray-100 focus:outline-none border border-gray-200 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5">Add To Cart</button>
+                        <button onClick={handleAddToCart} className="text-gray-900 bg-white hover:bg-gray-100 focus:outline-none border border-gray-200 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5">Add To Cart</button>
                     </div>
                 </div>
             </div>
