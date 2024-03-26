@@ -23,7 +23,7 @@ const Navigation = () => {
 
             <div className="flex basis-3/12 items-center">
                 {!isAuthenticated && <div className="mr-4"><Link to="signin">SignIn</Link></div>}
-                {isAuthenticated && <div className="mr-4"><Link to="cart"><ShoppingCart /></Link></div>}
+                {!isAuthenticated && <div className="mr-4"><Link to="cart"><ShoppingCart /></Link></div>}
                 {isAuthenticated && <div className="mr-4"><Link to="person"><Person /></Link></div>}
                 {!isAuthenticated && <div className="mr-4"><Link to="signup"><Person2 /></Link></div>}
                 {<div className="mr-4"><Link to="product"><PeopleAltRounded /></Link></div>}

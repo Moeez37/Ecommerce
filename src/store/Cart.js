@@ -6,27 +6,32 @@ const cartSlice = createSlice({
     initialState,
     reducers: {
         addItemToCart(state, action) {
-            const { id, price, quantity } = action.payload;
+            const { id, quantity } = action.payload;
+            console.log(id, quantity, "additem")
             if (!state[id]) {
                 state[id] = {
                     itemQuantity: quantity || 0,
-                    itemPrice: price
                 };
             } else {
+
                 state[id].itemQuantity += quantity || 0;
-                state[id].itemPrice = price;
             }
 
             console.log(JSON.stringify(state));
         },
         removeItemFromCart(state, action) {
-            const id = action.payload[id];
+            const { id, quantity } = action.payload;
             if (state.hasOwnProperty(id)) {
+                console.log("inside if statement")
                 delete state[id];
             }
+
         },
         removeItemQuantity(state, action) {
-            const id = action.payload[id];
+            console.log("this.removeItemFromCart");
+
+            const { id, quantity } = action.payload;
+            console.log(id, quantity, "removeItem")
             if (state.hasOwnProperty(id)) {
                 if (state[id].itemQuantity == 1) {
                     state = delete state[id];
@@ -35,6 +40,7 @@ const cartSlice = createSlice({
                     state[id].itemQuantity -= 1
                 }
             }
+            console.log(state[id]);
 
         }
 
