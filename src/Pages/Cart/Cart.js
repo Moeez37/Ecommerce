@@ -27,18 +27,15 @@ function cardproductJsx(item, handleRemove, HandleQuantityChange) {
             </svg>
         </div>
         <span class="text-center w-1/5 font-semibold text-sm">${price}</span>
-        <span class="text-center w-1/5 font-semibold text-sm">${price}</span>
+        <span class="text-center w-1/5 font-semibold text-sm">${(itemQuantity * price).toFixed(4)}</span>
     </div>);
 }
 
 function Cart(props) {
     const dispatch = useDispatch();
     const { cart, products } = useSelector(state => { return { cart: state.cart, products: state.products } })
-    const filterItemsDetails = mapAndFilteroutDetailsofCartItem(cart, products.products)
-    console.log(filterItemsDetails)
-    const quantity = filterItemsDetails.length
+    const { filteredItems, countofItems, totalPrice } = mapAndFilteroutDetailsofCartItem(cart, products.products)
     let cardproductjsx = [];
-    console.log(filterItemsDetails)
     function handleRemove(id) {
         dispatch(cartActions.removeItemFromCart({ id }))
     }
@@ -51,7 +48,8 @@ function Cart(props) {
         dispatch(cartActions.removeItemQuantity({ id, quantity: value }));
 
     }
-    filterItemsDetails.map(item => {
+
+    filteredItems.map(item => {
         cardproductjsx.push(cardproductJsx(item, handleRemove, HandleQuantityChange))
     })
 
@@ -62,7 +60,7 @@ function Cart(props) {
                 <div class="w-3/4 bg-white px-10 py-10">
                     <div class="flex justify-between border-b pb-8">
                         <h1 class="font-semibold text-2xl">Shopping Cart</h1>
-                        <h2 class="font-semibold text-2xl">3 Items</h2>
+                        <h2 class="font-semibold text-2xl">{countofItems} Items</h2>
                     </div>
                     <div class="flex mt-10 mb-5">
                         <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
@@ -83,13 +81,13 @@ function Cart(props) {
                 <div id="summary" class="w-1/4 px-8 py-10">
                     <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
                     <div class="flex justify-between mt-10 mb-5">
-                        <span class="font-semibold text-sm uppercase">Items {quantity}</span>
-                        <span class="font-semibold text-sm">590$</span>
+                        <span class="font-semibold text-sm uppercase">Items {countofItems}</span>
+                        <span class="font-semibold text-sm">{(totalPrice).toFixed(4)}$</span>
                     </div>
                     <div>
                         <label class="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
                         <select class="block p-2 text-gray-600 w-full text-sm">
-                            <option>Standard shipping - $10.00</option>
+                            <option>Standard shipping - ${(totalPrice * 0.10).toFixed(4)}</option>
                         </select>
                     </div>
                     <div class="py-10">
@@ -100,7 +98,7 @@ function Cart(props) {
                     <div class="border-t mt-8">
                         <div class="flex font-semibold justify-between py-6 text-sm uppercase">
                             <span>Total cost</span>
-                            <span>$600</span>
+                            <span>${(totalPrice + totalPrice * 0.10).toFixed(4)}</span>
                         </div>
                         <button class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
                     </div>

@@ -1,3 +1,5 @@
+import { type } from "@testing-library/user-event/dist/type";
+
 export function ValidateUserInfoField(UserInfoObject) {
 
     for (const key in UserInfoObject) {
@@ -39,20 +41,21 @@ export const userModal = {
 }
 export function mapAndFilteroutDetailsofCartItem(cart, products) {
     const idsOfCartItems = Object.keys(cart);
-
-    // Filter products based on whether their IDs are present in the cart
+    let countofItems = 0;
+    let totalPrice = 0;
     const filteredItems = products.map(prod => {
         if (idsOfCartItems.includes(prod.id.toString())) {
-            const cartItem = cart[prod.id.toString()]; // Fetch corresponding cart item
-            const quantity = cartItem.itemQuantity || 0; // Retrieve quantity, default to 0 if not found
-            // Return a new object with updated quantity
+            const cartItem = cart[prod.id.toString()];
+            const quantity = cartItem.itemQuantity || 0;
+            countofItems += quantity
+            totalPrice += quantity * prod.price;
             return {
                 ...prod,
                 itemQuantity: quantity
             };
         }
-        return null; // Return null for products not found in the cart
-    }).filter(Boolean); // Filter out null values
-    console.log(filteredItems)
-    return filteredItems;
+        return null;
+    }).filter(Boolean);
+
+    return { filteredItems, countofItems, totalPrice };
 }

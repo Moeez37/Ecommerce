@@ -4,21 +4,21 @@ import { fetchProducts } from '../../../store/Product';
 import { useParams, Link } from 'react-router-dom';
 
 function ProductDetail() {
-    // const param = useParams();
-    // const dispatch = useDispatch();
-    // const [loading, setLoading] = useState(true);
-    // const { products, isFetched } = useSelector(state => state.products)
-    // const { id, title, price, description, image } = products.find(item => item.id == param.productId);
-    // document.body.style.overflow = "unset";
-    // useEffect(() => {
-    //     console.log(isFetched, "in the useEffect");
-    //     if (isFetched) {
+    const param = useParams();
+    const dispatch = useDispatch();
+    const [loading, setLoading] = useState(true);
+    const { products, isFetched } = useSelector(state => state.products)
+    const { id, title, price, description, image } = products.find(item => item.id == param.productId);
+    document.body.style.overflow = "unset";
+    useEffect(() => {
+        console.log(isFetched, "in the useEffect");
+        if (isFetched) {
 
-    //         setLoading(false);
-    //         return
-    //     }
-    //     dispatch(fetchProducts());
-    // }, [isFetched]);
+            setLoading(false);
+            return
+        }
+        dispatch(fetchProducts());
+    }, [isFetched]);
 
 
     return (<>

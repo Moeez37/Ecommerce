@@ -8,9 +8,13 @@ function ProductContainer({ catagory }) {
     const { products, isFetched } = useSelector(state => state.products)
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(true);
+    const [scrollPosition, setScrollPosition] = useState(0);
+    const utilityStates = {
+        scrollPosition, setScrollPosition
+    }
     console.log(count++, isFetched, "productcontiainer")
     useEffect(() => {
-        console.log(isFetched, "in the useEffect");
+        console.log(isFetched, "in the useEffect of product Card");
         if (isFetched) {
 
             setLoading(false);
@@ -20,7 +24,7 @@ function ProductContainer({ catagory }) {
     }, [isFetched]);
 
     const productsJSx = products.map((item, index) => (
-        <ProductCard key={index} item={item} />
+        <ProductCard key={index} item={item} utilityStates={utilityStates} />
     ));
 
     return (
