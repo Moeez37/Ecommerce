@@ -2,6 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchProducts } from '../../../store/Product';
 import { useParams, Link } from 'react-router-dom';
+export function loader({ request, params }) {
+    //request
+    //params 
+    // these are by default object of parameters
+}
 
 function ProductDetail() {
     const param = useParams();

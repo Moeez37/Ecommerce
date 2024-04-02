@@ -10,6 +10,7 @@ import UserProfile from "./Pages/UserProfile/UserProfile.js";
 import ErrorPage from "./Pages/Error/Index.js";
 import ProductContainer from "./Pages/Home/Components/ProductContainer.js";
 import ProductDetail from "./Pages/Home/Components/ProductDetail.js";
+import { loader as itemLoader } from "./Pages/Home/Components/ProductDetail.js"
 import Cart from "./Pages/Cart/Cart.js";
 import { loader as categoriesLoader } from "./Pages/Home/Home.js";
 
@@ -20,8 +21,9 @@ const router = createBrowserRouter([
     , children: [
       { path: "", element: <Home />, loader: categoriesLoader },
       { path: "product", element: <div class="grid grid-cols-1 md:grid-cols-4 gap-4"> <ProductContainer /></div> },
-      { path: "product/:productId", element: <ProductDetail /> },
-      { path: "signin", element: <SignIn /> },
+      { path: "product/:productId", element: <ProductDetail />, loader: itemLoader },
+      { path: "signin", element: <SignIn />},
+
       { path: "signup", element: <SignUp /> },
       { path: "person", element: <UserProfile /> },
       { path: "cart", element: <Cart /> }

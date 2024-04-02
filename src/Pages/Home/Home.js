@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Menue from "./Components/Menue";
 import ImageContainer from "./Components/Image.js";
 import ProductContainer from "./Components/ProductContainer.js";
-import { useLoaderData, useNavigation } from "react-router-dom";
+import { json, useLoaderData, useNavigation } from "react-router-dom";
 const Home = () => {
     const categories = useLoaderData();
     const navigation = useNavigation();
@@ -40,6 +40,6 @@ export async function loader() {
         return cat;
     }
     catch (err) {
-        throw new Response(JSON.stringify(`Unable to fetch`), { status: 400 })
+        throw json({ data: "Unable to fetch" }, { status: 400 })
     }
 }
