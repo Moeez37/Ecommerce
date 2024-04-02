@@ -4,27 +4,20 @@ import { userAuthInfo } from "../../store/index.js";
 import Input from "../../Custom/customComponents/input.js";
 import useInput from "../../Custom/customHook/use-input.js";
 import { useSelector, useDispatch } from "react-redux";
+import { useSubmit, redirect, json } from "react-router-dom";
 const SignIn = () => {
   const navigate = useNavigate();
   const userAuth = useSelector(state => state.Auth);
   const dispatch = useDispatch();
   const email = useInput();
   const password = useInput();
+  const submit = useSubmit();
 
-
+  const user = localStorage.getItem("user")
+  if (user) redirect("/");
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    const response = await fetch("https://fakestoreapi.com/users/1")
-    const user = await response.json();
-
-    if (email.value === user.email && password.value === user.password) {
-      dispatch(userAuthInfo.loginUser(user));
-      email.setInput("");
-      password.setInput("");
-      navigate("/")
-      return
-    }
-    console.log("email and password not matched !")
+    submit(event.currentTarget, { method: "post", action: "/signin" })
   }
 
 
@@ -62,3 +55,19 @@ const SignIn = () => {
 };
 
 export default SignIn;
+export async function action({ request, params }) {
+  console.log(request)
+  const data = await request.formData();
+  console.log(data)
+  const email = data.get("email");
+  const password = data.get("password")
+  console.log(email, password, "Moeez")
+  const response = await fetch("https://fakestoreapi.com/users/1")
+  const user = await response.json();
+  console.log(user, "Moeez");
+  if (user.email === email && user.password === password) {
+    localStorage.setItem("user", JSON.stringify(user))
+    return json({ message: "signIn succesfully" }, { status: 200 })
+  }
+  return json({}, { status: 500 });
+}
