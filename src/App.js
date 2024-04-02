@@ -22,7 +22,7 @@ const router = createBrowserRouter([
       { path: "", element: <Home />, loader: categoriesLoader },
       { path: "product", element: <div class="grid grid-cols-1 md:grid-cols-4 gap-4"> <ProductContainer /></div> },
       { path: "product/:productId", element: <ProductDetail />, loader: itemLoader },
-      { path: "signin", element: <SignIn />},
+      { path: "signin", element: <SignIn /> },
 
       { path: "signup", element: <SignUp /> },
       { path: "person", element: <UserProfile /> },

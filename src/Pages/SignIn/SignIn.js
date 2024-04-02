@@ -17,16 +17,10 @@ const SignIn = () => {
     const response = await fetch("https://fakestoreapi.com/users/1")
     const user = await response.json();
 
-    console.log("userData:", user);
-    console.log("email.input:", email.value);
-    console.log("password.input:", password.value);
-
-
     if (email.value === user.email && password.value === user.password) {
       dispatch(userAuthInfo.loginUser(user));
       email.setInput("");
       password.setInput("");
-      // return <Redirect to='/' />
       navigate("/")
       return
     }
