@@ -17,7 +17,8 @@ const SignIn = () => {
   if (user) redirect("/");
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    submit(event.currentTarget, { method: "post", action: "/signin" })
+    console.log(event.target.email.value)
+    submit({ "email": event.target.email.value, "password": event.target.password.value }, { method: "post", action: "/" })
   }
 
 
@@ -28,6 +29,7 @@ const SignIn = () => {
         <Input
           id="email"
           type="email"
+          name="email"
           placeholder="Enter Email"
           value={email.input}
           className="mb-4 px-4 py-2 w-full rounded-lg border focus:outline-none focus:border-blue-500"
@@ -37,6 +39,7 @@ const SignIn = () => {
         <Input
           id="password"
           type="password"
+          name="password"
           placeholder="Password"
           value={password.input}
           className="mb-4 px-4 py-2 w-full rounded-lg border focus:outline-none focus:border-blue-500"
@@ -58,10 +61,12 @@ export default SignIn;
 export async function action({ request, params }) {
   console.log(request)
   const data = await request.formData();
-  console.log(data)
+  console.log(JSON.stringify(data))
   const email = data.get("email");
   const password = data.get("password")
+
   console.log(email, password, "Moeez")
+
   const response = await fetch("https://fakestoreapi.com/users/1")
   const user = await response.json();
   console.log(user, "Moeez");
