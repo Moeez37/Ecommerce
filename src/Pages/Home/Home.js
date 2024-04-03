@@ -43,3 +43,8 @@ export async function loader() {
         throw json({ data: "Unable to fetch" }, { status: 400 })
     }
 }
+export function action({ request, params }) {
+    console.log("im Home action")
+    return null;
+
+}
